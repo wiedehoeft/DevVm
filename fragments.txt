@@ -1,0 +1,2 @@
+ sudo wget -O /opt/eclipse-javascript-oxygen.zip https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/oxygen/R/eclipse-javascript-oxygen-R-win32-x86_64.zip&r=1
+    cd /opt/ && sudo unzip eclipse-javascript-oxygen.zip
