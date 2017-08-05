@@ -22,6 +22,10 @@ Vagrant.configure(2) do |config|
 
     # Install Eclipse
     # Install Docker
+    # Install Git
+    # Init Git!?
+    # Shared folder einrichten
+    # Install unzip
 
     # Set german local
 	  localectl set-keymap de
