@@ -22,6 +22,14 @@ Vagrant.configure(2) do |config|
 
     # Install Eclipse
     # Install Docker
+    # Install Docker (see https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository)
+    sudo yum install -y yum-utils \
+    device-mapper-persistent-data \
+    lvm2
+    sudo yum-config-manager -y \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+    sudo yum -y install docker-ce
 
     # Install current Nodejs server (see https://nodejs.org/en/download/package-manager/)
     curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo -E bash -
