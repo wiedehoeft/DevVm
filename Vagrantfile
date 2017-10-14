@@ -58,5 +58,10 @@ Vagrant.configure(2) do |config|
     sudo umount /media/VBoxGuestAdditions
     sudo rmdir /media/VBoxGuestAdditions
 
+
+    ## Open Issues
+    # Install citrix Receiver
+    # Install openjdk9 (https://omajid.wordpress.com/2016/10/04/openjdk-9-for-fedoraepel/)
+
   SHELL
 end
