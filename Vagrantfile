@@ -72,6 +72,7 @@ Vagrant.configure("2") do |config|
     # Install citrix Receiver
     # Install openjdk9 (https://omajid.wordpress.com/2016/10/04/openjdk-9-for-fedoraepel/)
     # Instal Eclipse
+    # Shared folder einrichten
 
   SHELL
 end
