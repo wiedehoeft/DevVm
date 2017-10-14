@@ -29,9 +29,6 @@ Vagrant.configure("2") do |config|
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
     sudo yum -y install code
-
-    # Install Eclipse
-    #wget http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/oxygen/1a/eclipse-dsl-oxygen-1a-win32-x86_64.zip&r=1
     
     # Install Docker (see https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository)
     sudo yum install -y yum-utils \
@@ -74,6 +71,7 @@ Vagrant.configure("2") do |config|
     ## Open Issues
     # Install citrix Receiver
     # Install openjdk9 (https://omajid.wordpress.com/2016/10/04/openjdk-9-for-fedoraepel/)
+    # Instal Eclipse
 
   SHELL
 end
