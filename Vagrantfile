@@ -1,11 +1,11 @@
 ### configuration parameters  ###
-VIRTUALBOX_VERSION = "5.1.28" ### TODO: maybe we could determine from Host_OS this?
+VIRTUALBOX_VERSION = "5.2.12" ### TODO: maybe we could determine from Host_OS this?
 ### /configuration parameters ###
 
 Vagrant.require_version ">= 1.9.0"  
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "centos/7"
+  config.vm.box = "fedora/25-cloud-base"
  
   config.vm.provider "virtualbox" do |vb|
      vb.gui = true
@@ -17,13 +17,13 @@ Vagrant.configure("2") do |config|
     sudo yum -y install java-1.8.0-openjdk-devel wget epel-release kernel-devel gcc dkms firefox unzip git git-gui
     
     # Install Desktop
-    sudo yum -y groupinstall "X Window system" xfce
+    sudo dnf -y install @xfce-desktop-environment
     sudo systemctl set-default graphical.target
     rm '/etc/systemd/system/default.target'
     ln -s '/usr/lib/systemd/system/graphical.target' '/etc/systemd/system/default.target'
 
     # Install chrome (got from epel-release)
-    sudo yum -y install chromium
+    sudo dnf -y install chromium
     
     # Install Visual Studio Code
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -31,17 +31,17 @@ Vagrant.configure("2") do |config|
     sudo yum -y install code
     
     # Install Docker (see https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository)
-    sudo yum install -y yum-utils \
+    sudo dnf install -y dnf-utils \
     device-mapper-persistent-data \
     lvm2
-    sudo yum-config-manager -y \
+    sudo dnf-config-manager -y \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
-    sudo yum -y install docker-ce
+    sudo dnf -y install docker-ce
 
     # Install current Nodejs server (see https://nodejs.org/en/download/package-manager/)
     curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo -E bash -
-    sudo yum -y install nodejs
+    sudo dnf -y install nodejs
 
     # Install Ruby and Jekyll for blogposts at github.io (see https://jekyllrb.com/docs/installation/)
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
@@ -67,6 +67,11 @@ Vagrant.configure("2") do |config|
     sudo umount /media/VBoxGuestAdditions
     sudo rmdir /media/VBoxGuestAdditions
 
+    #install jdk8
+    sudo dnf -y install java-1.8.0-openjdk
+	
+    #install eclipse
+    sudo dnf -y install eclipse
 
     ## Open Issues
     # Install citrix Receiver
