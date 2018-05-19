@@ -13,8 +13,8 @@ Vagrant.configure("2") do |config|
   end
   
   config.vm.provision "shell", inline: <<-SHELL
-    sudo yum -y update
-    sudo yum -y install java-1.8.0-openjdk-devel wget epel-release kernel-devel gcc dkms firefox unzip git git-gui
+    sudo dnf -y update
+    sudo dnf -y install java-1.8.0-openjdk-devel wget kernel-devel gcc dkms firefox unzip git git-gui maven gradle epel-release
     
     # Install Desktop
     sudo dnf -y install @xfce-desktop-environment
@@ -30,14 +30,14 @@ Vagrant.configure("2") do |config|
     sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
     sudo yum -y install code
     
-    # Install Docker (see https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository)
-    sudo dnf install -y dnf-utils \
-    device-mapper-persistent-data \
-    lvm2
-    sudo dnf-config-manager -y \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
+    # Install Docker (see https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository) 
+    dnf -y install dnf-plugins-core
+    sudo dnf config-manager --set-enabled docker-ce-edge
+    sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+    sudo dnf config-manager --set-enabled docker-ce-test
+    sudo dnf config-manager --set-disabled docker-ce-edge
     sudo dnf -y install docker-ce
+	sudo systemctl start docker
 
     # Install current Nodejs server (see https://nodejs.org/en/download/package-manager/)
     curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo -E bash -
@@ -67,16 +67,16 @@ Vagrant.configure("2") do |config|
     sudo umount /media/VBoxGuestAdditions
     sudo rmdir /media/VBoxGuestAdditions
 
-    #install jdk8
-    sudo dnf -y install java-1.8.0-openjdk
 	
     #install eclipse
     sudo dnf -y install eclipse
 
+	# Install openjdk9 (https://omajid.wordpress.com/2016/10/04/openjdk-9-for-fedoraepel/)
+    sudo dnf -y copr enable omajid/openjdk9
+    sudo dnf -y install java-9-openjdk-devel
+
     ## Open Issues
-    # Install citrix Receiver
-    # Install openjdk9 (https://omajid.wordpress.com/2016/10/04/openjdk-9-for-fedoraepel/)
-    # Instal Eclipse
+    # Install citrix Receiver    
     # Shared folder einrichten
 
   SHELL
