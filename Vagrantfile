@@ -14,7 +14,15 @@ Vagrant.configure("2") do |config|
   
   config.vm.provision "shell", inline: <<-SHELL
     sudo dnf -y update
-    sudo dnf -y install java-1.8.0-openjdk-devel wget kernel-devel gcc dkms firefox unzip git git-gui maven gradle epel-release
+    sudo dnf -y install java-1.8.0-openjdk-devel
+    sudo dnf -y install maven
+    sudo dnf -y install gradle
+    sudo dnf -y install git git-gui
+    sudo dnf -y install dkms
+    sudo dnf -y install firefox
+    sudo dnf -y install gcc
+    sudo dnf -y install unzip
+    sudo dnf -y install kernel-devel
     
     # Install Desktop
     sudo dnf -y install @xfce-desktop-environment
